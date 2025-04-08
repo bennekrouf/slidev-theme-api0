@@ -1,0 +1,148 @@
+/* styles/code.css */
+
+/* Code block styles */
+pre {
+  @apply p-4;
+  @apply rounded-lg;
+  @apply my-4;
+  @apply text-sm;
+  @apply overflow-x-auto;
+  @apply border;
+  @apply border-border/40;
+  background-color: var(--color-secondary);
+  
+  /* Add a subtle shadow for depth */
+  box-shadow: var(--shadow-sm);
+}
+
+/* Light mode */
+html:not(.dark) pre {
+  background-color: var(--color-secondary);
+}
+
+/* Dark mode */
+html.dark pre {
+  background-color: var(--color-secondary);
+}
+
+/* Inline code styling */
+:not(pre) > code {
+  @apply text-sm;
+  @apply py-0.5;
+  @apply px-1.5;
+  @apply rounded;
+  @apply font-mono;
+  @apply bg-secondary/50;
+  @apply border;
+  @apply border-border;
+}
+
+/* Language badge */
+pre:before {
+  content: attr(data-language);
+  @apply text-xs;
+  @apply font-mono;
+  @apply font-medium;
+  @apply absolute;
+  @apply right-2;
+  @apply top-2;
+  @apply py-0.5;
+  @apply px-2;
+  @apply rounded;
+  @apply bg-primary/10;
+  @apply text-primary;
+  @apply z-10;
+  opacity: 0.8;
+}
+
+/* Customize Shiki syntax highlighting colors */
+.shiki {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  overflow-x: auto;
+}
+
+/* Custom syntax highlighting for light mode */
+html:not(.dark) .shiki {
+  --shiki-color-text: #24292e;
+  --shiki-color-background: var(--color-secondary);
+  --shiki-token-constant: #005cc5;
+  --shiki-token-string: #032f62;
+  --shiki-token-comment: #6a737d;
+  --shiki-token-keyword: #d73a49;
+  --shiki-token-parameter: #24292e;
+  --shiki-token-function: #6f42c1;
+  --shiki-token-string-expression: #032f62;
+  --shiki-token-punctuation: #24292e;
+  --shiki-token-link: #032f62;
+}
+
+/* Custom syntax highlighting for dark mode */
+html.dark .shiki {
+  --shiki-color-text: #c9d1d9;
+  --shiki-color-background: var(--color-secondary);
+  --shiki-token-constant: #79c0ff;
+  --shiki-token-string: #a5d6ff;
+  --shiki-token-comment: #8b949e;
+  --shiki-token-keyword: #ff7b72;
+  --shiki-token-parameter: #c9d1d9;
+  --shiki-token-function: #d2a8ff;
+  --shiki-token-string-expression: #a5d6ff;
+  --shiki-token-punctuation: #c9d1d9;
+  --shiki-token-link: #a5d6ff;
+}
+
+/* Nested code blocks within lists, etc. */
+li > pre, p > pre {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+/* Line numbers */
+.slidev-code-line-numbers .line {
+  padding-left: 2.25rem;
+  min-height: 1.5em;
+}
+
+.slidev-code-line-numbers .line::before {
+  position: absolute;
+  text-align: right;
+  left: 0;
+  width: 1.5rem;
+  padding-right: 0.5rem;
+  color: var(--colors-gray-400);
+  content: attr(data-line);
+  opacity: 0.5;
+}
+
+/* Highlighted lines */
+.slidev-code .line.highlighted {
+  background-color: var(--color-primary-light);
+  opacity: 0.1;
+  width: 100%;
+}
+
+/* Code container */
+.slidev-code-wrapper {
+  margin: 0.5em 0;
+  position: relative;
+}
+
+/* Code block with filename */
+.slidev-code-wrapper[data-file]:before {
+  content: attr(data-file);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-foreground);
+  background-color: var(--color-muted);
+  border-top-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  opacity: 0.8;
+}
+
+.slidev-code-wrapper[data-file] pre {
+  padding-top: 1.75rem;
+}
